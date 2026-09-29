@@ -1,12 +1,12 @@
 class Solution:
-    def rec (self , n):
-    
-        if n == 0 or n == 1: 
-            return n
-
-        return self.rec(n-1) + self.rec (n - 2)
-        
     def fib(self, n: int) -> int:
-        
-        return self.rec(n)
- 
+        if n == 0 or n ==1 :
+            return n 
+        a = 0
+        b = 1
+
+        for i in range ( 2, n+1):
+            c = a+b
+            a = b
+            b = c
+        return b
