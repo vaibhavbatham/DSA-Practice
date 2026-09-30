@@ -16,5 +16,5 @@ class Solution:
             a = b
             b = c
             c = d
-        return d
+        return c
 
