@@ -4,5 +4,5 @@ SELECT
     s.year,
     s.price
 FROM Sales s
-left JOIN Product p
+INNER  JOIN Product p
     ON p.product_id = s.product_id;
