@@ -1,0 +1,9 @@
+-- Write your PostgreSQL query statement below
+select 
+m.name
+from Employee e
+join Employee m
+on e.managerId = m.id
+group by 
+m.id , m.name
+Having Count (e.id)>= 5;
