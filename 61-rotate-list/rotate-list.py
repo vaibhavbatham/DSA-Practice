@@ -34,6 +34,3 @@ class Solution:
         curr.next = None
 
         return head
-
-        last.next = head
-        head = curr.next
