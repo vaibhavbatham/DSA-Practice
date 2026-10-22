@@ -5,29 +5,35 @@
 #         self.next = next
 class Solution:
     def rotateRight(self, head: ListNode | None, k: int) -> ListNode | None:
-        
+
         if head is None or head.next is None:
             return head
-        
-        length = 0
-        curr = head
 
-        while curr != None:
-            curr = curr.next
+        length = 0
+        last = head
+
+        while last.next is not None:
+            last = last.next
             length += 1
 
-        k = k % length 
-        
-        for i in range(k):
-            prev = head
-            while prev.next.next != None:
-                prev = prev.next
+        length += 1
 
-            temp = head
-            curr = prev.next
+        k = k % length
 
-            curr.next = temp
-            prev.next = None
-            head = curr
+        if k == 0:
+            return head
+
+        curr = head
+
+        for i in range(length - k - 1):
+            curr = curr.next
+
+        last.next = head
+
+        head = curr.next
+        curr.next = None
 
         return head
+
+        last.next = head
+        head = curr.next
