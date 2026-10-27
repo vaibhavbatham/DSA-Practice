@@ -6,27 +6,38 @@
 
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # Initialize slow and fast pointers
         slow = head
         fast = head
 
-        # Step 1: Detect whether a cycle exists
+        # Step 1: Detect the cycle
         while fast is not None and fast.next is not None:
-            slow = slow.next          # Move one step
-            fast = fast.next.next     # Move two steps
+            slow = slow.next
+            fast = fast.next.next
 
-            # If both pointers meet, a cycle exists
             if slow == fast:
+                break
+        else:
+            return None
 
-                # Step 2: Find the starting node of the cycle
-                temp = head
+        # Step 2: Calculate cycle length
+        lengthCountOfLoop = 1
+        curr = slow.next
 
-                while temp != slow:
-                    temp = temp.next
-                    slow = slow.next
+        while curr != slow:
+            curr = curr.next
+            lengthCountOfLoop += 1
 
-                # The meeting point is the cycle's starting node
-                return temp
+        # Step 3: Move fast ahead by cycle length
+        slow = head
+        fast = head
 
-        # If fast reaches the end, there is no cycle
-        return None
+        for i in range(lengthCountOfLoop):
+            fast = fast.next
+
+        # Step 4: Find the cycle's starting node
+        while slow != fast:
+            slow = slow.next
+            fast = fast.next
+
+        return slow
+
